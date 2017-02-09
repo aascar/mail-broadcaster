@@ -7,16 +7,29 @@ import Mailer from './mailer';
 
 class MailBroadcaster {
 
+    /**
+     *
+     * @param conf {Object} required configuration for SMTP Mail
+     * @param options {Object} if any
+     */
     constructor(conf, options){
         this.mailer = Mailer(conf); //creating mailer instance. Singleton
     }
 
+    /**
+     * To send Mail
+     * @param mail
+     */
     sendMail = (mail) => {
 
         this.mailer.sendMail(mail); //TODO: need more configuration here
     };
 
-    scheduleMail = () => {
+    /**
+     * To schedule mail with interval or later
+     * @param options
+     */
+    scheduleMail = (options) => {
         //TODO:
     };
 
