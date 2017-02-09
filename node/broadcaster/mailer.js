@@ -1,13 +1,11 @@
 /**
  * Created by jyothi on 9/2/17.
  */
-'use strict';
-var conf = require('../conf');
-
-var nodeMailer = require('nodemailer');
+import nodeMailer from 'nodemailer';
 
 // create reusable transporter object using the default SMTP transport
-var transporter = nodeMailer.createTransport({
+
+export default (conf) => nodeMailer.createTransport({
     service: conf.service,
     auth: {
         user: conf.user,
@@ -16,7 +14,7 @@ var transporter = nodeMailer.createTransport({
 });
 
 // setup email data with unicode symbols
-var mailOptions = {
+let mailOptions = {
     from: '"Fred Foo 👻" <foo@blurdybloop.com>', // sender address
     to: 'bar@blurdybloop.com, baz@blurdybloop.com', // list of receivers
     subject: 'Hello ✔', // Subject line
