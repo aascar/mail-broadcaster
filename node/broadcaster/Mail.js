@@ -8,11 +8,11 @@
 export default class Mail {
     /**
      *
-     * @param from - required
-     * @param to - required
-     * @param subject - [optional]
-     * @param text - [optional]
-     * @param html - [optional]
+     * @param from - (String) [required]
+     * @param to - Array[String]| (String) [required]
+     * @param subject - (String) [optional]
+     * @param text - (String) [optional]
+     * @param html - (XML|HTML) [optional]
      */
     constructor(from, to, subject, text, html){
         this.from = from;
