@@ -16,9 +16,10 @@ export default class Mail {
      */
     constructor(from, to, subject, text, html){
         this.from = from;
-        this.to = to;
         this.subject = subject;
         this.text = text;
         this.html = html;
+        let toAddress = Array.isArray(to) ? to.reduce((a, b) => `${a}, ${b}`) : to;
+        this.to = Array.isArray(toAddress);
     }
 };
