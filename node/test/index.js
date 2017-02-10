@@ -4,7 +4,7 @@
 import http from 'http';
 import assert from 'assert';
 
-import '../lib/bin/www';
+import '../lib';
 
 /**
  * Index Test

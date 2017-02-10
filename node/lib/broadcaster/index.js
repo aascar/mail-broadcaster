@@ -5,7 +5,7 @@ import Mailer from './mailer';
 
 //TODO: need more configurations for cron jobs and DataSources support
 
-class MailBroadcaster {
+export default class MailBroadcaster {
 
     /**
      *
@@ -13,7 +13,8 @@ class MailBroadcaster {
      * @param options {Object} if any
      */
     constructor(conf, options){
-        this.mailer = Mailer(conf); //creating mailer instance. Singleton
+        console.log("Mailer Instance", conf);
+        //this.mailer = Mailer(conf); //creating mailer instance. Singleton
     }
 
     /**
