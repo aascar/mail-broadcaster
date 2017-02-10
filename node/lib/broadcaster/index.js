@@ -2,6 +2,7 @@
  * Created by jyothi on 9/2/17.
  */
 import Mailer from './mailer';
+import scheduler from 'node-schedule';
 
 //TODO: need more configurations for cron jobs and DataSources support
 
@@ -31,7 +32,8 @@ export default class MailBroadcaster {
      * @param options
      */
     scheduleMail = (options) => {
-        //TODO:
+        //TODO: Take date or proper schedule to run cron jobs
+        //scheduler.scheduleJob()
     };
 
 
