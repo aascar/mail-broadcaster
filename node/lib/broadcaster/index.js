@@ -12,9 +12,9 @@ export default class MailBroadcaster {
      * @param conf {Object} required configuration for SMTP Mail
      * @param options {Object} if any
      */
-    constructor(conf, options){
+    constructor(conf, options = {}){
         console.log("Mailer Instance", conf);
-        //this.mailer = Mailer(conf); //creating mailer instance. Singleton
+        this.mailer = Mailer(conf); //creating mailer instance. Singleton
     }
 
     /**
@@ -22,7 +22,6 @@ export default class MailBroadcaster {
      * @param mail
      */
     sendMail = (mail) => {
-
         this.mailer.sendMail(mail); //TODO: need more configuration here
     };
 
