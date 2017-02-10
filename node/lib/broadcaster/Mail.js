@@ -14,12 +14,11 @@ export default class Mail {
      * @param text - (String) [optional]
      * @param html - (XML|HTML) [optional]
      */
-    constructor(from, to, subject, text, html){
+    constructor(from, to, subject, text, html = null){
         this.from = from;
         this.subject = subject;
         this.text = text;
         this.html = html;
-        let toAddress = Array.isArray(to) ? to.reduce((a, b) => `${a}, ${b}`) : to;
-        this.to = Array.isArray(toAddress);
+        this.to = Array.isArray(to) ? to.reduce((a, b) => `${a}, ${b}`) : to;
     }
 };

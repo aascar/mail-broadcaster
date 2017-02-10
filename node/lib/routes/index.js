@@ -10,9 +10,10 @@ router.get('/', function(req, res, next) {
 
     const broadcaster = new MailBroadcaster(conf);
 
-    const testMail = new Mail("aascar@aascar.com", "arajajyothibabu@apxor.com", "Hai Test Mail", "This is Mail broadcaster");
+    //const singleRecipient = new Mail("arajajyothibabu@apxor.com", "arajajyothibabu@gmail.com", "Hai Test Mail", "This is Mail broadcaster");
+    const multiRecipient = new Mail("arajajyothibabu@apxor.com", [ "arajajyothibabu@apxor.com", "arajajyothibabu@gmail.com" ], "Hai Test Mail", "This is Mail broadcaster");
 
-    broadcaster.sendMail(testMail);
+    broadcaster.sendMail(multiRecipient);
 
     res.writeHead(200, {'Content-Type': 'text/plain'});
     res.end(response);

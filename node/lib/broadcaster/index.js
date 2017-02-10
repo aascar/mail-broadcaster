@@ -22,6 +22,7 @@ export default class MailBroadcaster {
      * @param mail
      */
     sendMail = (mail) => {
+        console.log("Came to send", mail);
         this.mailer.sendMail(mail); //TODO: need more configuration here
     };
 
