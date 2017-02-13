@@ -30,10 +30,10 @@ export default class MailBroadcaster {
     /**
      * To schedule mail with interval or later
      * @param mail [Mail]
-     * @param options [Object]
+     * @param options [Object] {schedule: [rule | date]}
      */
     scheduleMail = (mail, options) => {
-        this.scheduleJob(null, () => { //schedules mail
+        this.scheduleJob(options.schedule, () => { //schedules mail
             this.sendMail(mail); //sends mail with options containing time or schedule
         });
     };
@@ -49,7 +49,7 @@ export default class MailBroadcaster {
      * @param dayOfWeek
      * @returns {*|RecurrenceRule}
      */
-    configureRule = (second = 1, minute = null, hour = null, date = null, month = null, year = null, dayOfWeek = null) => {
+    makeRule = (second = 1, minute = null, hour = null, date = null, month = null, year = null, dayOfWeek = null) => {
         let rule = new scheduler.RecurrenceRule();
         //rule.dayOfWeek = [0, new scheduler.Range(4, 6)]; //range
         rule.second = second;
@@ -74,12 +74,11 @@ export default class MailBroadcaster {
 
     /**
      *
-     * @param timestamp [YYYY, MM, DD, HH, mm, ss]
+     * @param schedule [rule] | [Date(YYYY, MM, DD, HH, mm, ss)]
      * @param job [function]
      */
-    scheduleJob = (timestamp, job) => {
-        let date = new Date(2017, 1, 13, 23, 40, 0); //timestamp
-        let j = scheduler.scheduleJob(date, function(y){
+    scheduleJob = (schedule, job) => {
+        let scheduledJob = scheduler.scheduleJob(schedule, function(y){
             job();
             console.log(y);
         }.bind(this, "Job Scheduled"));
