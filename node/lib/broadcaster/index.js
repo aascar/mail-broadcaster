@@ -20,7 +20,7 @@ export default class MailBroadcaster {
 
     /**
      * To send Mail
-     * @param mail
+     * @param mail [Mail]
      */
     sendMail = (mail) => {
         console.log("Came to send", mail);
@@ -29,14 +29,17 @@ export default class MailBroadcaster {
 
     /**
      * To schedule mail with interval or later
-     * @param options
+     * @param mail [Mail]
+     * @param options [Object]
      */
-    scheduleMail = (options) => {
-        //TODO: Take date or proper schedule to run cron jobs
-        //scheduler.scheduleJob()
+    scheduleMail = (mail, options) => {
+        this.scheduleJob(null, () => { //schedules mail
+            this.sendMail(mail); //sends mail with options containing time or schedule
+        });
     };
 
     /**
+     *
      * @param second
      * @param minute
      * @param hour
@@ -44,6 +47,7 @@ export default class MailBroadcaster {
      * @param month
      * @param year
      * @param dayOfWeek
+     * @returns {*|RecurrenceRule}
      */
     configureRule = (second = 1, minute = null, hour = null, date = null, month = null, year = null, dayOfWeek = null) => {
         let rule = new scheduler.RecurrenceRule();
@@ -55,14 +59,31 @@ export default class MailBroadcaster {
         rule.month = month;
         rule.year = year;
         rule.dayOfWeek = dayOfWeek;
+        return rule;
     };
 
+    /**
+     *
+     * @param rule [configRule]
+     */
     runCronJob = (rule) => {
         let job = scheduler.scheduleJob(rule, function(){
-            console.log('Today is recognized by Rebecca Black!');
+            console.log('Job is scheduled');
         });
-    }
+    };
 
+    /**
+     *
+     * @param timestamp [YYYY, MM, DD, HH, mm, ss]
+     * @param job [function]
+     */
+    scheduleJob = (timestamp, job) => {
+        let date = new Date(2017, 1, 13, 23, 40, 0); //timestamp
+        let j = scheduler.scheduleJob(date, function(y){
+            job();
+            console.log(y);
+        }.bind(this, "Job Scheduled"));
+    }
 
 
 }
