@@ -36,6 +36,33 @@ export default class MailBroadcaster {
         //scheduler.scheduleJob()
     };
 
+    /**
+     * @param second
+     * @param minute
+     * @param hour
+     * @param date
+     * @param month
+     * @param year
+     * @param dayOfWeek
+     */
+    configureRule = (second = 1, minute = null, hour = null, date = null, month = null, year = null, dayOfWeek = null) => {
+        let rule = new scheduler.RecurrenceRule();
+        //rule.dayOfWeek = [0, new scheduler.Range(4, 6)]; //range
+        rule.second = second;
+        rule.minute = minute;
+        rule.hour = hour;
+        rule.date = date;
+        rule.month = month;
+        rule.year = year;
+        rule.dayOfWeek = dayOfWeek;
+    };
+
+    runCronJob = (rule) => {
+        let job = scheduler.scheduleJob(rule, function(){
+            console.log('Today is recognized by Rebecca Black!');
+        });
+    }
+
 
 
 }
